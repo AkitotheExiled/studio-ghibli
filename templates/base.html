@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- TODO: Create error pages for the following: 404, 403, 303, etc -->
+    {% block head %}
+    {% block javascript %}
+    <script src="{{ url_for('static', filename='stylesheets/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='stylesheets/loader.js') }}"></script>
+    {% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+   <title>Unofficial</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/styles.css') }}">
+    {% endblock %}
+{% block navbar %}
+    <div class="desktop-nav">
+     <div class="search-container">
+            <form class="searchform" action="" method="post">
+                {{ form.hidden_tag() }}<!--
+-->{{ form.choices }}<!--
+-->{{ form.searchbar }}<!--
+-->
+            </form>
+                </div>
+    </div>
+    <div class="navbar">
+            <div class="search-container">
+            <form class="searchform" action="{{ url_for('searchroute') }}"  method="post">
+                {{ form.hidden_tag() }}<!--
+-->{{ form.choices }}<!--
+-->{{ form.searchbar }}<!--
+-->
+            </form>
+                </div>
+            <a href="{{url_for('index')}}" id="logo"><img src="/static/images/logo.png"></a>
+        <p id="dropdownToggler">
+
+            <button class="dropbtn" onclick="Show()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+                </button>
+
+        <div id="dropdownItems">
+            <ul>
+                <button id="close">🗴</button>
+                <li><a href="{{ url_for('.index') }}">Home</a></li>
+                <li><a href="{{ url_for('.show_category', category='films') }}">Films</a></li>
+                <li><a href="{{ url_for('.show_category', category='people') }}">People</a></li>
+                <li><a href="{{ url_for('.show_category', category='vehicles') }}">Vehicles</a></li>
+                <li><a href="{{ url_for('.show_category', category='locations') }}">Locations</a></li>
+                <li><a href="{{ url_for('.show_category', category='species') }}">Species</a></li>
+                    </ul>
+
+        </div>
+        </div>
+<script>
+     function getGridContainer(gridSel) {
+        gridStyle = window.getComputedStyle(gridSel, null);
+        col = gridStyle.getPropertyValue("grid-column");
+        row = gridStyle.getPropertyValue("grid-row");
+
+        };
+    function Show() {
+
+        nav_items = document.querySelector("#dropdownItems");
+        nav_items.style.display = "block";
+
+};
+    function ShowEle(ele,sel) {
+
+        shown_ele = document.querySelector(sel);
+        shown_ele.style.display = "none";
+
+        hidden_ele = document.querySelector(ele);
+        hidden_ele.style.display = "grid";
+    };
+
+    function showOneEle(ele) {
+
+        children = document.querySelector(ele).parentElement.children;
+        for (var k in children) {
+
+            children[k].style.display = "none";
+
+        }
+        element = document.querySelector(ele);
+        element.style.display = "grid";
+        };
+
+        items = document.querySelector("#dropdownItems");
+        close = document.getElementById("close");
+        close.onclick = function() {
+            items.style.display = "none";
+        };
+</script>
+
+{% endblock %}
+{% block content %} {% endblock %}
+{% block app_content %} {% endblock %}
+    <div id="footer">
+        {% block footer %}
+        &copy; Copyright 2020 by Michael G
+        {% endblock %}
+    </div>

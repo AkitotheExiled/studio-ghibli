@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+<!-- TODO: ADD Filters for other routes such as, vehicles,locations,species,people,etc-->{% block content %}
+<div class="item-layout">
+	<div class="top-image">
+		<div class="space-container"></div>
+		<div class="image-container"><img src="/static/images/{{ item.id }}.jpg"></div>
+		<div class="top-break"></div>
+	</div>
+	<div class="item-info">
+		<div class="title">{{ item.name }} <span>({{item.gender}})</span> </div>
+		<div class="age">{{ item.age }} years old</div>
+		<div class="break"></div>
+		<div class="features">
+			<ul>
+				<li><span class="eye_color"><span>{{item.eye_color}} eyes</span></span>
+				</li>
+				<li><span class="hair_color"><span>{{item.hair_color}} hair</span></span>
+				</li>
+			</ul>
+		</div>
+		<p class="otherfilms">
+			<div class="break"></div>
+			<p class="margin-bold">Other films</p>
+			<ul> {% for film in item.films %} {% set item = get_item(film) %}
+				<li><a href="{{form_url_for_item(film)}}">{{ item.title}}</a></li> {% endfor %} </ul>
+			<p class="species">
+				<div class="break"></div>
+				<p class="margin-bold">Species</p> {% set content = get_item(item.species) %}
+				<li><a href="{{form_url_for_item(item.species)}}">{{ content.name}}</a></li>
+	</div>
+</div> {% endblock %}

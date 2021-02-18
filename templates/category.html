@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block content %}
+<div class="list-container">
+	<div class="results">Your search returned {{ category|length }} results.</div> {% for item in category %}
+	<a href="{{ url_for('show_item', category=name, id=item.id) }}" class="custom-card">
+		<div class="listcard">
+			<div class="image"> <img src="/static/images/{{ item['id'] }}.jpg"> </div>
+			<div class="title">
+				<p class="tit">{% if item['title'] %} <span>{{ item['title'] }}</span> {% else %} <span>{{ item['name'] }}</span> {% endif %}</p>
+			</div>
+			<div class="info"> {% if item['rt_score'] %} <img src="/static/images/heart.svg">
+				<h3>{{item['rt_score']}}</h3> {% else %}
+				<h3 id="bracket"> > </h3> {% endif %} </div>
+		</div>
+	</a> {% endfor %} </div> {% endblock %}

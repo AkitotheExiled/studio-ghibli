@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+<!-- TODO: ADD Filters for other routes such as, vehicles,locations,species,people,etc-->{% block content %}
+<div class="item-layout">
+	<div class="top-image">
+		<div class="space-container"></div>
+		<div class="image-container"><img src="/static/images/{{ item.id }}.jpg"></div>
+		<div class="top-break"></div>
+	</div>
+	<div class="item-info">
+		<div class="title">{% if item.title %} {{ item.title }} <span>({{item.release_date}})</span> {% else %} {{item.name}} {% endif %}</div>
+		<div class="hearts">
+			<p id="score">{{item.rt_score}}</p>
+			<p> Rotten Tomatoes | </p><a href="https://www.rottentomatoes.com/search?search=studio%20ghilbi"> Ghilbi ratings</a> </div>
+		<div class="break"></div>
+		<div class="desc">{{ item.description }}</div>
+		<div class="break"></div>
+		<div class="credits">
+			<ul>
+				<li><span>Director: <span class="dir">{{item.director}}</span></span>
+				</li>
+				<li> </li>
+				<li><span>Producer: <span class="prod">{{item.producer}}</span></span>
+				</li>
+			</ul>
+		</div>
+	</div> {% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+<!-- TODO: ADD Filters for other routes such as, vehicles,locations,species,people,etc-->{% block content %}
+<div class="item-layout">
+	<div class="top-image">
+		<div class="space-container"></div>
+		<div class="image-container"><img src="/static/images/{{ item.id }}.jpg"></div>
+		<div class="top-break"></div>
+	</div>
+	<div class="item-info">
+		<div class="title">{{ item.name }} <span>({{item.vehicle_class}})</span> </div>
+		<div class="age">{{ item.description }}</div>
+		<div class="break"></div>
+		<div class="features">
+			<ul>
+				<li><span class="length"><span>{{item.length}} long</span></span>
+				</li>
+			</ul>
+		</div>
+
+</div> {% endblock %}

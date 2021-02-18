@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+<style>
+</style> {% block content %}
+<div class="main-container"> {% for header, items in content.items() %} {% set category = header %}
+	<div class="category-heads">{{header}}</div> {% for item in items %}
+	<div class="cardimg" id="front{{item.id}}">
+		<div class="href">
+			<a href="{{ url_for('.show_item', category=header, id=item.id ) }} " class="custom-card">
+				<div class="image">
+					<a href="static/images/{{item.id}}.jpg" class="progressive replace"> <img src="static/images/t_{{item.id}}.jpg" class="preview" alt="image" /> </a>
+					<div class="title">
+						<p><span>{{ item.title or item.name }}</span></p>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="info"> {% if item.description %}
+			<button class="butCard" onclick="ShowEle('#back{{item.id}}', '#front{{item.id}}')">Learn more</button> {% else %} <a href="{{ url_for('.show_item', category=header, id=item.id ) }}" class="custom-card">Learn more</a> {% endif %} </div>
+	</div>
+	<div class="cardHid" id="back{{item.id}}"> {% if item.description|length > 250 %}
+		<div class="desc">
+			<p>{{ item.description[0:250] }}...</p>
+		</div> {% else %}
+		<div class="desc">
+			<p>{{ item.description }}</p>
+		</div> {% endif%}
+		<button class="butCard" onclick="ShowEle('#front{{item.id}}', '#back{{item.id}}')">Back</button>
+	</div> {% endfor %} {% endfor %} {% endblock %} </div>
