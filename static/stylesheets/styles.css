@@ -814,8 +814,8 @@ p {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: #BFD1E5;
-    color: #333533;
+    background-color: #e7e7e7;
+    color: #393939;
   }
 
   .listcard .info img {
